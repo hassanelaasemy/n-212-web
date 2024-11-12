@@ -7,7 +7,7 @@ export default function TitleHead({ title }) {
           href="#"
           className="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline title_link"
         >
-          Voir Plus
+          Voir <Pluss></Pluss>
           <svg
             className="w-4 h-4 ms-2 rtl:rotate-180"
             aria-hidden="true"
