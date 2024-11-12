@@ -1,11 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import "../css/reels.css";
+import "../../css/reels.css";
 import { Pagination } from "swiper/modules";
 import { useQuery } from "@tanstack/react-query";
-import ContentApi from "../../Api/ContentApis";
-import { BASE_URL } from "../../config";
+import ContentApi from "../../../Api/ContentApis";
+import { BASE_URL } from "../../../config";
 export default function ReelsComp() {
   const {
     isLoading,
@@ -28,7 +28,7 @@ export default function ReelsComp() {
           clickable: true,
         }}
         modules={[Pagination]}
-        className="mySwiper"
+        // className="mySwiper"
       >
         {shorts.map((reel, index) => {
           return (

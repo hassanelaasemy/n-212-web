@@ -1,11 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import "./../styles.css";
+import "./../../styles.css";
 import { Pagination } from "swiper/modules";
-import ContentApi from "../../Api/ContentApis";
+import ContentApi from "../../../Api/ContentApis";
 import { useQuery } from "@tanstack/react-query";
-import { BASE_URL } from "../../config";
+import { BASE_URL } from "../../../config";
 
 export default function Commingsoonsection() {
   const {
