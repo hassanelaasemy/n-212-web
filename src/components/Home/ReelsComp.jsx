@@ -1,7 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import "../../css/reels.css";
 import { Pagination } from "swiper/modules";
 import { useQuery } from "@tanstack/react-query";
 import ContentApi from "../../../Api/ContentApis";
@@ -23,17 +22,22 @@ export default function ReelsComp() {
       <Swiper
         slidesPerView={4}
         spaceBetween={50}
-        // centeredSlides={true}
-        pagination={{
-          clickable: true,
-        }}
         modules={[Pagination]}
-        // className="mySwiper"
+        style={{ width: "100%", height: "400px" }}
       >
         {shorts.map((reel, index) => {
           return (
             <SwiperSlide key={index}>
-              <img src={BASE_URL + "/storage/" + reel.image} alt={reel.title} />
+              <img  src={BASE_URL + "/storage/" + reel.image} alt={reel.title} style={
+                {width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                borderRadius: "10px",
+                boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+                transition: "transform 0.3s ease-in-out",
+                cursor: "pointer",
+              }
+              } />
             </SwiperSlide>
           );
         })}
