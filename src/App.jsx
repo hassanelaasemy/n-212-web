@@ -1,6 +1,11 @@
+import { Provider } from "react-redux";
+import Navbar from "./components/Navbar";
+import { store } from "../redux/store";
+
 export default function App() {
-  return <div>
-    <h1>N-212 Website</h1>
-   
-  </div>;
+  return (
+    <Provider store={store}>
+      <Navbar />
+    </Provider>
+  );
 }
