@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import CustomAxios from "./axois";
 const ContentApi = {
   getCommingSoonContent: async () => {
@@ -17,7 +16,7 @@ const ContentApi = {
     return response.data;
   },
   getFormationContent: async () => {
-    const token = await AsyncStorage.getItem("token");
+    const token =  localStorage.getItem("token");
     const response = await CustomAxios.get("/api/content/formation", {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -62,7 +61,7 @@ const ContentApi = {
     return response.data;
   },
   getFavoriteContentUser: async () => {
-    const token = await AsyncStorage.getItem("token");
+    const token = await localStorage.getItem("token");
     const response = await CustomAxios.get(`/api/favoris`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -71,7 +70,7 @@ const ContentApi = {
     return response.data;
   },
   getFinishedCoursUser: async () => {
-    const token = await AsyncStorage.getItem("token");
+    const token = await localStorage.getItem("token");
     const response = await CustomAxios.get(`/api/content/view/finishe`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -80,7 +79,7 @@ const ContentApi = {
     return response.data;
   },
   getStartedCoursUser: async () => {
-    const token = await AsyncStorage.getItem("token");
+    const token = await localStorage.getItem("token");
     const response = await CustomAxios.get(`/api/content/view/start`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -89,7 +88,7 @@ const ContentApi = {
     return response.data;
   },
   getUserTickets: async () => {
-    const token = await AsyncStorage.getItem("token");
+    const token = await localStorage.getItem("token");
     const response = await CustomAxios.get(`/api/ticket`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -98,7 +97,7 @@ const ContentApi = {
     return response.data;
   },
   getUserGoals: async () => {
-    const token = await AsyncStorage.getItem("token");
+    const token = await localStorage.getItem("token");
     const response = await CustomAxios.get(`/api/objective`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -111,7 +110,7 @@ const ContentApi = {
     return response.data;
   },
   getSubcategorySeledtedByUser: async () => {
-    const token = await AsyncStorage.getItem("token");
+    const token = await localStorage.getItem("token");
     const response = await CustomAxios.get(`/api/client/subcategory`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -120,7 +119,7 @@ const ContentApi = {
     return response.data.map((item) => item.subCategoryId);
   },
   getCommentsUser: async (VideoId) => {
-    const token = await AsyncStorage.getItem("token");
+    const token = await localStorage.getItem("token");
     const response = await CustomAxios.get(`/api/content/comment/${VideoId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -132,7 +131,7 @@ const ContentApi = {
     if (!comment.trim()) {
       return;
     }
-    const token = await AsyncStorage.getItem("token");
+    const token = await localStorage.getItem("token");
     const response = await CustomAxios.post(
       `/api/content/store/comment/${courseId}`,
       { comment },
@@ -144,7 +143,7 @@ const ContentApi = {
     );
   },
   getFormationBySubcategoryUser: async () => {
-    const token = await AsyncStorage.getItem("token");
+    const token = await localStorage.getItem("token");
     const response = await CustomAxios.get(
       `/api/content/formation/subcategory`,
       {
@@ -156,7 +155,7 @@ const ContentApi = {
     return response.data;
   },
   getPodcastBySubcategoryUser: async () => {
-    const token = await AsyncStorage.getItem("token");
+    const token = await localStorage.getItem("token");
     const response = await CustomAxios.get(`/api/content/podcast/subcategory`, {
       headers: {
         Authorization: `Bearer ${token}`,
