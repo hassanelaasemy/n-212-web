@@ -1,12 +1,16 @@
-import Commingsoonsection from "../components/Commingsoonsection";
+import Commingsoonsection from "../components/commingsoonsection";
+import Footer from "../components/Footer";
+import ReelsComp from "../components/ReelsComp";
 import TitleHead from "../components/TitleHead";
 
 
 export default function Home() {
   return (
     <>
-     <TitleHead title={'Formation'}/>
      <Commingsoonsection />
+     <TitleHead title={'Formation'}/>
+     <ReelsComp/>
+     <Footer/>
     </>
   )
 }
