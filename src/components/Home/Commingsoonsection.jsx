@@ -27,9 +27,9 @@ export default function Commingsoonsection() {
       modules={[Pagination]}
       className="mySwiper"
     >
-      {items.map((slide , index) => (
+      {items.map((slide, index) => (
         <SwiperSlide key={index}>
-          <img src={BASE_URL + `/storage/` + slide.image} alt={slide.title} />
+          <img className="image_swiper" src={BASE_URL + `/storage/` + slide.image} alt={slide.title} />
         </SwiperSlide>
       ))}
     </Swiper>
