@@ -1,8 +1,10 @@
 import { Provider } from "react-redux";
-import Navbar from "./components/Navbar";
+
 import { store } from "../redux/store";
-import Commingsoonsection from "./components/commingsoonsection";
+import Navbar from "./components/Navbar"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Home from "./pages/Home";
+
 const queryClient = new QueryClient();
 
 export default function App() {
@@ -11,7 +13,7 @@ export default function App() {
       <Provider store={store}>
         <Navbar />
         <div className="container mx-auto relative top-20 ">
-          <Commingsoonsection />
+         <Home/>
         </div>
       </Provider>
     </QueryClientProvider>

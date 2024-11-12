@@ -1,8 +1,12 @@
+import Commingsoonsection from "../components/Commingsoonsection";
+import TitleHead from "../components/TitleHead";
+
 
 export default function Home() {
   return (
-    <div>
-      
-    </div>
+    <>
+     <TitleHead title={'Formation'}/>
+     <Commingsoonsection />
+    </>
   )
 }
