@@ -43,20 +43,23 @@ export default function FormationContent() {
                   }}
                 />
               </div>
-              <div className="p-4">
+              <div className="p-4 ml-auto">
                 <h6 className="mb-2 text-slate-800 text-xl font-semibold text-end">
                   {formation.title}
                 </h6>
-                <div
-                  className="mb-4 rounded-full py-0.5 px-2.5 border border-transparent text-xs text-white transition-all shadow-sm w-20 text-center ml-auto"
-                  style={{
-                    backgroundColor: COLORS.primarygreen,
-                  }}
-                >
-                  {formation.categoryName}
+
+                <div className="p-3 flex flex-wrap gap-2 ml-auto ">
+                  <span
+                    style={{
+                      backgroundColor: COLORS.primarygreen,
+                    }}
+                    className={`text-xs font-medium px-2.5 py-0.5 rounded text-white ml-auto`}
+                  >
+                    {formation.categoryName}
+                  </span>
                 </div>
 
-                <p className="text-slate-600 leading-normal font-light">
+                <p className="text-slate-600 leading-normal font-light ml-auto">
                   {"..." + formation.smallDescription.substring(0, 50)}
                 </p>
               </div>
@@ -72,7 +75,7 @@ export default function FormationContent() {
                       {formation.user.fullName}
                     </span>
                     <span className="text-slate-600">
-                      {formation?.user.roles.join("").substring(0, 9)+("...")}
+                      {formation?.user.roles.join("").substring(0, 9) + "..."}
                     </span>
                   </div>
                 </div>
