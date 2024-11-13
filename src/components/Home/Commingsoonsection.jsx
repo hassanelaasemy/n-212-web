@@ -8,10 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "../../../config";
 
 export default function Commingsoonsection() {
-  const {
-    data: items,
-    isLoading,
-  } = useQuery({
+  const { data: items, isLoading } = useQuery({
     queryKey: ["comingSoonData"],
     queryFn: ContentApi.getCommingSoonContent,
     throwOnError: (error) => {
@@ -22,7 +19,22 @@ export default function Commingsoonsection() {
   if (isLoading) return <div>Loading...</div>;
   return (
     <Swiper
-      slidesPerView={2}
+      breakpoints={{
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        // when window width is >= 768px (tablet)
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+        // when window width is >= 1024px (desktop)
+        1024: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+      }}
       spaceBetween={30}
       modules={[Pagination]}
       className="mySwiper"
@@ -32,32 +44,36 @@ export default function Commingsoonsection() {
     >
       {items.map((slide, index) => (
         <SwiperSlide key={index}>
-          <img className="image_swiper" src={BASE_URL + `/storage/` + slide.image} alt={slide.title} />
-          
+          <img
+            className="image_swiper"
+            src={BASE_URL + `/storage/` + slide.image}
+            alt={slide.title}
+          />
+
           <div style={{ position: "absolute", top: 20, left: -25, width: 180 }}>
-      <div style={{ transform: "rotate(-40deg)" }}>
-        <button
-          style={{
-            backgroundColor: "#FF0000", // Replace with COLORS.primaryred
-            padding: "4px 10px",
-            borderRadius: 6,
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          <span
-            style={{
-              fontWeight: "bold", // Replace with FONTS.fontBold if available
-              color: "#FFFFFF",   // Replace with COLORS.white
-              textAlign: "center",
-              display: "block",
-            }}
-          >
-            Coming soon...
-          </span>
-        </button>
-      </div>
-    </div>
+            <div style={{ transform: "rotate(-40deg)" }}>
+              <button
+                style={{
+                  backgroundColor: "#FF0000", // Replace with COLORS.primaryred
+                  padding: "4px 10px",
+                  borderRadius: 6,
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                <span
+                  style={{
+                    fontWeight: "bold", // Replace with FONTS.fontBold if available
+                    color: "#FFFFFF", // Replace with COLORS.white
+                    textAlign: "center",
+                    display: "block",
+                  }}
+                >
+                  Coming soon...
+                </span>
+              </button>
+            </div>
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>
