@@ -13,10 +13,12 @@ export default function Home() {
   return (
     <>
          <Commingsoonsection />
-      <TitleHead title={"Formation"} />
-      <ReelsComp />
-      <FormationContent />
       <TitleHead title={"Quickly"} />
+      <ReelsComp />
+      <TitleHead title={"Formation"} />
+      <FormationContent />
+      <TitleHead title={"Podcast"} />
+
       <PodcastComp />
       <TitleHead title={"Best Content"} />
       <BestContentComp />
