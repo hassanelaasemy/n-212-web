@@ -2,7 +2,9 @@ import { COLORS } from "../../../constant/theme";
 
 export default function TaQaftBladiSection() {
   return (
-    <>
+    <div style={{
+        paddingTop: "20px",
+    }}>
       <div
         style={{
           paddingBottom: 5,
@@ -11,6 +13,7 @@ export default function TaQaftBladiSection() {
           backgroundColor: COLORS.primaryred,
           width: "100%",
           borderRadius: 5,
+
         }}
       >
         <div
@@ -24,7 +27,7 @@ export default function TaQaftBladiSection() {
           <span style={{ color: COLORS.white }}>TaQafat Biladi</span>
           <img
             style={{ width: 30, height: 30, marginLeft: 5 }}
-            src={"../../../public/maroc.webp"}
+            src="../../../public/starmaroc.webp"
             alt="Star Maroc"
           />
         </div>
@@ -33,7 +36,11 @@ export default function TaQaftBladiSection() {
       <div
         style={{
           width: "100%",
-          height: "500px",
+          height: "100%",
+        paddingTop: 20,
+        alignContent: "center",
+        justifyContent: "center",
+
         }}
       >
         <img
@@ -41,13 +48,12 @@ export default function TaQaftBladiSection() {
           alt="taqaft-bladi"
           style={{
             width: "100%",
-            height: "500px",
+            height: "450px",
             objectFit: "contain",
-            borderRadius: "10px",
             cursor: "pointer",
           }}
         />
       </div>
-    </>
+    </div>
   );
 }

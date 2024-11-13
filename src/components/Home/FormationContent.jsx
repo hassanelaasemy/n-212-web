@@ -24,7 +24,23 @@ export default function FormationContent() {
   if (error) return <div>Error: {error.message}</div>;
   return (
     <Swiper
-      slidesPerView={3}
+      breakpoints={{
+        // when window width is >= 320px (mobile)
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        // when window width is >= 768px (tablet)
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+        // when window width is >= 1024px (desktop)
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+      }}
       spaceBetween={30}
       modules={[Pagination]}
       className="mySwiper"
