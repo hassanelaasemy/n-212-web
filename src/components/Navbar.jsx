@@ -19,8 +19,8 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a
-          href="https://flowbite.com/"
+        <Link
+          to="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <img
@@ -30,7 +30,7 @@ export default function Navbar() {
             className="h-8"
             alt="N-212 Logo"
           />
-        </a>
+        </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           <button
             onClick={handleToggle}
@@ -150,7 +150,7 @@ export default function Navbar() {
             </li>
             <li>
               <Link
-              to="/login"
+                to="/login"
                 className={`flex items-center py-2 px-3 rounded ${
                   theme === "dark"
                     ? "text-white hover:bg-gray-700 md:hover:bg-transparent md:hover:text-blue-500"
