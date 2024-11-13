@@ -12,25 +12,20 @@ import TitleHead from "../components/TitleHead";
 export default function Home() {
   return (
     <>
-      <Commingsoonsection />
-      <TitleHead title={'Quicly'} />
+         <Commingsoonsection />
+      <TitleHead title={"Formation"} />
       <ReelsComp />
-      <TitleHead title={'Formation'} />
       <FormationContent />
-      <TitleHead title={'Podcast'} />
+      <TitleHead title={"Quickly"} />
       <PodcastComp />
-      <TitleHead title={'Best Content'} />
+      <TitleHead title={"Best Content"} />
       <BestContentComp />
-      <TitleHead title={'Events'} />
+      <TitleHead title={"Events"} />
       <Event />
-      <TitleHead title={'Instructeurs'} />
+      <TitleHead title={"Instructeurs"} />
       <Speakers />
-
       <TaQaftBladiSection />
-
       <Footer />
-
-
     </>
   );
 }
