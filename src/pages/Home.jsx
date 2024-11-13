@@ -7,6 +7,8 @@ import ReelsComp from "../components/Home/ReelsComp";
 import Speakers from "../components/Home/Speakers";
 import FormationContent from "../components/Home/FormationContent";
 import TaQaftBladiSection from "../components/Home/TaQaftBladiSection";
+import Event from "../components/Home/Event";
+import Speakers from "../components/Home/Speakers";
 import TitleHead from "../components/TitleHead";
 
 export default function Home() {
@@ -14,9 +16,10 @@ export default function Home() {
     <>
          <Commingsoonsection />
       <TitleHead title={"Formation"} />
-      <ReelsComp />
       <FormationContent />
-      <TitleHead title={"Quickly"} />
+      <TitleHead title={'Quickly'} />
+      <ReelsComp />
+      <TitleHead title={'Podcast'} />
       <PodcastComp />
       <TitleHead title={"Best Content"} />
       <BestContentComp />
@@ -24,7 +27,9 @@ export default function Home() {
       <Event />
       <TitleHead title={"Instructeurs"} />
       <Speakers />
+
       <TaQaftBladiSection />
+
       <Footer />
     </>
   );
