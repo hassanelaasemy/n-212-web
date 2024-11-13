@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { COLORS } from "../../constant/theme";
 
 export default function TitleHead({ title }) {
@@ -33,3 +34,6 @@ export default function TitleHead({ title }) {
     </div>
   );
 }
+TitleHead.propTypes = {//+
+  title: PropTypes.string.isRequired,//+
+};//+
