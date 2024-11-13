@@ -5,7 +5,6 @@ import PodcastComp from "../components/Home/PodcastComp";
 import ReelsComp from "../components/Home/ReelsComp";
 import TitleHead from "../components/TitleHead";
 
-
 export default function Home() {
   return (
     <>
@@ -17,6 +16,7 @@ export default function Home() {
      <TitleHead title={'Best Content'}/>
      <BestContentComp />
      <Footer/>
+
     </>
-  )
+  );
 }
