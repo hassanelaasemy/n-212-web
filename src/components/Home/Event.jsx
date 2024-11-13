@@ -27,7 +27,9 @@ export default function Event() {
             spaceBetween={30}
             modules={[Pagination]}
             className="mySwiper"
-            // style={{height:'374px'}}
+
+        // style={{height:'374px'}}
+
         >
             {items.map((slide, index) => (
                 <SwiperSlide key={index}>
