@@ -39,8 +39,20 @@ export default function Speakers() {
 
     return (
         <Swiper
-            slidesPerView={4}
-            spaceBetween={30}
+        breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 30,
+            },
+          }}
             modules={[Pagination]}
             className="mySwiper"
             style={{ height: '100%' }}
