@@ -26,12 +26,38 @@ export default function Commingsoonsection() {
       spaceBetween={30}
       modules={[Pagination]}
       className="mySwiper"
+      // style={{
+      //   position: "relative",
+      // }}
     >
       {items.map((slide, index) => (
         <SwiperSlide key={index}>
           <img className="image_swiper" src={BASE_URL + `/storage/` + slide.image} alt={slide.title} />
           
-          
+          <div style={{ position: "absolute", top: 20, left: -25, width: 180 }}>
+      <div style={{ transform: "rotate(-40deg)" }}>
+        <button
+          style={{
+            backgroundColor: "#FF0000", // Replace with COLORS.primaryred
+            padding: "4px 10px",
+            borderRadius: 6,
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          <span
+            style={{
+              fontWeight: "bold", // Replace with FONTS.fontBold if available
+              color: "#FFFFFF",   // Replace with COLORS.white
+              textAlign: "center",
+              display: "block",
+            }}
+          >
+            Coming soon...
+          </span>
+        </button>
+      </div>
+    </div>
         </SwiperSlide>
       ))}
     </Swiper>
