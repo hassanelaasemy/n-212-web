@@ -30,6 +30,8 @@ export default function Commingsoonsection() {
       {items.map((slide, index) => (
         <SwiperSlide key={index}>
           <img className="image_swiper" src={BASE_URL + `/storage/` + slide.image} alt={slide.title} />
+          
+          
         </SwiperSlide>
       ))}
     </Swiper>

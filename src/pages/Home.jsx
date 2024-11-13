@@ -4,16 +4,15 @@ import PodcastComp from "../components/Home/PodcastComp";
 import ReelsComp from "../components/Home/ReelsComp";
 import TitleHead from "../components/TitleHead";
 
-
 export default function Home() {
   return (
     <>
-     <Commingsoonsection />
-     <TitleHead title={'Formation'}/>
-     <ReelsComp/>
-     <TitleHead title={'Podcast'}/>
-     <PodcastComp />
-     <Footer/>
+      <Commingsoonsection />
+      <TitleHead title={"Quickly"} />
+      <ReelsComp />
+      <TitleHead title={"Podcasts"} />
+      <PodcastComp />
+      <Footer />
     </>
-  )
+  );
 }

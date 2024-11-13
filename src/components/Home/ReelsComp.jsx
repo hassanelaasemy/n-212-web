@@ -20,10 +20,10 @@ export default function ReelsComp() {
   return (
     <>
       <Swiper
-        slidesPerView={4}
+        slidesPerView={5}
         spaceBetween={50}
         modules={[Pagination]}
-        style={{ width: "100%", height: "400px" }}
+        style={{ width: "100%", height: "350px" }}
       >
         {shorts.map((reel, index) => {
           return (
