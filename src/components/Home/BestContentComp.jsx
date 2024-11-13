@@ -35,7 +35,7 @@ export default function BestContentComp() {
 
                     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <a href="#">
-                            <img className="rounded-t-lg w-full" style={{ height: '215px'}} src={BASE_URL + `/storage/` + slide.image} alt={slide.title} />
+                            <img className="rounded-t-lg w-full" style={{ height: '215px' }} src={BASE_URL + `/storage/` + slide.image} alt={slide.title} />
 
                         </a>
                         <div class="p-5">

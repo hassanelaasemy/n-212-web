@@ -1,0 +1,8 @@
+.speaker_avatar {
+    position: absolute;
+    bottom: -26px;
+    height: 81px;
+    width: 81px;
+    right: 20px;
+    border-radius: 50%;
+}
