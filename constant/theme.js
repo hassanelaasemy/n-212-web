@@ -5,5 +5,6 @@ export const COLORS = {
   black: "black",
 };
 
+
 const appTheme = { COLORS };
 export default appTheme;

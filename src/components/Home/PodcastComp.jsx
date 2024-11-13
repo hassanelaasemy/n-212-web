@@ -18,8 +18,20 @@ export default function PodcastComp() {
   if (isLoading) return <div>Loading...</div>;
   return (
     <Swiper
-      slidesPerView={2}
-      spaceBetween={30}
+      breakpoints={{
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+      }}
       modules={[Pagination]}
       className="mySwiper"
     >

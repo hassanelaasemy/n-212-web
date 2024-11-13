@@ -12,7 +12,7 @@ import TitleHead from "../components/TitleHead";
 export default function Home() {
   return (
     <>
-      <Commingsoonsection />
+         <Commingsoonsection />
       <TitleHead title={"Formation"} />
       <ReelsComp />
       <FormationContent />

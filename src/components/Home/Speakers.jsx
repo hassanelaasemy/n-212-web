@@ -39,8 +39,20 @@ export default function Speakers() {
 
     return (
         <Swiper
-            slidesPerView={4}
-            spaceBetween={30}
+        breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 30,
+            },
+          }}
             modules={[Pagination]}
             className="mySwiper"
             style={{ height: '100%' }}
@@ -49,7 +61,9 @@ export default function Speakers() {
                 <SwiperSlide key={index}>
 
 
-                    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" style={{ height: '304px' }}>
+
+                    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" style={{ height: '304px' }}>
+
                         <div className='relative'>
                             <a href="#">
                                 <img className="rounded-t-lg w-full" style={{ height: '180px' }} src={BASE_URL + `/storage/` + speaker.cover} alt={speaker.id} />
