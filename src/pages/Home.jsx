@@ -13,23 +13,19 @@ export default function Home() {
   return (
     <>
       <Commingsoonsection />
-      <TitleHead title={'Formation'} />
+      <TitleHead title={"Formation"} />
       <ReelsComp />
-      <FormationContent/>
-      <TitleHead title={'Quickly'} />
+      <FormationContent />
+      <TitleHead title={"Quickly"} />
       <PodcastComp />
-      <TitleHead title={'Best Content'} />
+      <TitleHead title={"Best Content"} />
       <BestContentComp />
-      <TitleHead title={'Events'} />
+      <TitleHead title={"Events"} />
       <Event />
-      <TitleHead title={'Instructeurs'} />
+      <TitleHead title={"Instructeurs"} />
       <Speakers />
-        <TaQaftBladiSection/>
-
-
+      <TaQaftBladiSection />
       <Footer />
-
-
     </>
   );
 }

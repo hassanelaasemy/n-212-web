@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "../../redux/ThemeSlice";
 import { Home, Film, BookOpen, User } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const theme = useSelector((state) => state.theme.theme);
@@ -148,8 +149,8 @@ export default function Navbar() {
               </a>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+              to="/login"
                 className={`flex items-center py-2 px-3 rounded ${
                   theme === "dark"
                     ? "text-white hover:bg-gray-700 md:hover:bg-transparent md:hover:text-blue-500"
@@ -158,7 +159,7 @@ export default function Navbar() {
               >
                 <User className="w-4 h-4 mr-2" />
                 Profile
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
