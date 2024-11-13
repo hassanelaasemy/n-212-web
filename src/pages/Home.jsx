@@ -15,6 +15,7 @@ export default function Home() {
       <Commingsoonsection />
       <TitleHead title={'Formation'} />
       <ReelsComp />
+      <FormationContent/>
       <TitleHead title={'Quickly'} />
       <PodcastComp />
       <TitleHead title={'Best Content'} />
@@ -22,8 +23,8 @@ export default function Home() {
       <TitleHead title={'Events'} />
       <Event />
       <TitleHead title={'Instructeurs'} />
-        <TaQaftBladiSection/>
       <Speakers />
+        <TaQaftBladiSection/>
 
 
       <Footer />
