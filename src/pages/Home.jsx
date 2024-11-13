@@ -14,11 +14,11 @@ import TitleHead from "../components/TitleHead";
 export default function Home() {
   return (
     <>
-         <Commingsoonsection />
-      <TitleHead title={"Formation"} />
-      <FormationContent />
-      <TitleHead title={'Quickly'} />
+      <Commingsoonsection />
+      <TitleHead title={'Quicly'} />
       <ReelsComp />
+      <TitleHead title={'Formation'} />
+      <FormationContent />
       <TitleHead title={'Podcast'} />
       <PodcastComp />
       <TitleHead title={"Best Content"} />
