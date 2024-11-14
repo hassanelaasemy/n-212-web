@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
 import { COLORS } from "../../constant/theme";
+import { useSelector } from 'react-redux';
 
 export default function TitleHead({ title }) {
+  const theme = useSelector((state) => state.theme.theme);
+
   return (
     <div className="grid grid-cols-2 p-2">
-      <div className="title_head">{title}</div>
+      <div className={`title_head ${theme === 'dark' ? 'text-white' : ''}`}>{title}</div>
       <div className="text-right">
         <a
           href="#"

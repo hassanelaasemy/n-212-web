@@ -32,23 +32,23 @@ export default function Login() {
   });
 
 
+
+  const showErrorAlert = (message) => {
+    window.alert(message);
+    setErrorMessage(message);
+  };
+
   const onSubmit = async (values) => {
     setIsLoading(true);
     try {
       const result = await LoginService(values);
       if (result.success) {
-
         navigate("/");
-        // window.location.reload();
+      } else {
+        showErrorAlert(result.message);
       }
     } catch (error) {
       console.log("Une erreur s'est produite", error);
-
-        navigate("/");
-      }
-    } catch (error) {
-      console.log("Une erreur s'est produite", error);
-
     } finally {
       setIsLoading(false);
     }
