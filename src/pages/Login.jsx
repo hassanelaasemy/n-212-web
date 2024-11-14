@@ -4,14 +4,13 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { LoginService } from "../services/LoginService";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { refreshAuthState } from "../../redux/authSlice";
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
 
   const schema = z.object({
     email: z.string().email("Adresse e-mail invalide"),
@@ -31,26 +30,16 @@ export default function Login() {
     resolver: zodResolver(schema),
   });
 
-
   const onSubmit = async (values) => {
     setIsLoading(true);
     try {
       const result = await LoginService(values);
       if (result.success) {
-
         navigate("/");
         // window.location.reload();
       }
     } catch (error) {
-      console.log("Une erreur s'est produite", error);
-
-        navigate("/");
-      }
-    } catch (error) {
-      console.log("Une erreur s'est produite", error);
-
-    } finally {
-      setIsLoading(false);
+      console.log(error);
     }
   };
   useEffect(() => {
@@ -81,7 +70,7 @@ export default function Login() {
         </div>
       )}
       <div className="flex h-full">
-        <div className="hidden lg:flex items-center justify-center flex-1 bg-gray-200 text-black">
+        <div className="lg:flex items-center justify-center flex-1 bg-gray-200 text-black">
           <div className="max-w-md text-center ">
             <img src="../../public/logomain.png" />
           </div>
@@ -146,9 +135,9 @@ export default function Login() {
             <div className="mt-4 text-sm text-gray-600 text-center">
               <p>
                 you dont have an account?
-                <a href="#" className="text-black hover:underline">
+                <Link to="/register" className="text-black hover:underline">
                   Register here
-                </a>
+                </Link>
               </p>
             </div>
           </div>
