@@ -21,7 +21,7 @@ export default function Register() {
 
     return (
         <>
-            <div className="flex h-screen">
+            <div className="flex h-full">
                 {/* Left Pane */}
                 <div className="lg:flex items-center justify-center flex-1 bg-gray-200 text-black">
                     <div className="max-w-md text-center ">
