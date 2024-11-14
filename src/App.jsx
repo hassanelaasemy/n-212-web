@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login"; // Import the Login component
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import Router components
 import Footer from "./components/Footer";
+import Register from "./pages/Auth/Register";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
             </Routes>
           </div>
           <Footer />
