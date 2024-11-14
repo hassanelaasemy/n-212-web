@@ -12,6 +12,7 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+
   const schema = z.object({
     email: z.string().email("Adresse e-mail invalide"),
     password: z
@@ -30,15 +31,24 @@ export default function Login() {
     resolver: zodResolver(schema),
   });
 
+
   const onSubmit = async (values) => {
     setIsLoading(true);
     try {
       const result = await LoginService(values);
       if (result.success) {
+
+        navigate("/");
+        // window.location.reload();
+      }
+    } catch (error) {
+      console.log("Une erreur s'est produite", error);
+
         navigate("/");
       }
     } catch (error) {
       console.log("Une erreur s'est produite", error);
+
     } finally {
       setIsLoading(false);
     }
@@ -46,6 +56,7 @@ export default function Login() {
   useEffect(() => {
     dispatch(refreshAuthState());
   }, [dispatch]);
+
   return (
     <>
       {submitCount > 3 && (
