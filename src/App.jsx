@@ -10,17 +10,7 @@ export default function App() {
 
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-        <Router>
-          <Navbar />
-          <div className="container mx-auto relative top-20">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-            </Routes>
-          </div>
-        </Router>
-          {/* <Footer /> */}
+        <AppRoutes />
       </Provider>
     </QueryClientProvider>
   );
