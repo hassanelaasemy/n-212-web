@@ -27,7 +27,7 @@ export default function TaQaftBladiSection() {
           <span style={{ color: COLORS.white }}>TaQafat Biladi</span>
           <img
             style={{ width: 30, height: 30, marginLeft: 5 }}
-            src="../../../public/starmaroc.webp"
+            src="/starmaroc.webp"
             alt="Star Maroc"
           />
         </div>
@@ -44,7 +44,7 @@ export default function TaQaftBladiSection() {
         }}
       >
         <img
-          src="../../../public/maroc.webp"
+          src="/maroc.webp"
           alt="taqaft-bladi"
           style={{
             width: "100%",
