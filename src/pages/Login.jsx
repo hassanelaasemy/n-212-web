@@ -36,10 +36,14 @@ export default function Login() {
       const result = await LoginService(values);
       if (result.success) {
         navigate("/");
-        // window.location.reload();
+      } else {
+        console.log(result.message);
       }
     } catch (error) {
       console.log(error);
+      console.log("Une erreur s'est produite", error);
+    } finally {
+      setIsLoading(false);
     }
   };
   useEffect(() => {

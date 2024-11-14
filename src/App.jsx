@@ -7,10 +7,11 @@ const queryClient = new QueryClient();
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
+
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
         <AppRoutes />
-      </QueryClientProvider>
-    </Provider>
+      </Provider>
+    </QueryClientProvider>
   );
 }
