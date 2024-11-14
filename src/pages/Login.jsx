@@ -36,7 +36,6 @@ export default function Login() {
       const result = await LoginService(values);
       if (result.success) {
         navigate("/");
-        // window.location.reload();
       }
     } catch (error) {
       console.log("Une erreur s'est produite", error);
