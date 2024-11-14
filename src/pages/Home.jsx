@@ -27,8 +27,7 @@ export default function Home() {
       <TitleHead title={"Instructeurs"} />
       <Speakers />
       <TaQaftBladiSection />
-
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
