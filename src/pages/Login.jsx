@@ -2,13 +2,15 @@ import { useForm } from "react-hook-form";
 import { COLORS } from "../../constant/theme";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LoginService } from "../services/LoginService";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { refreshAuthState } from "../../redux/authSlice";
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState("");
+  const dispatch = useDispatch();
 
   const schema = z.object({
     email: z.string().email("Adresse e-mail invalide"),
@@ -28,28 +30,23 @@ export default function Login() {
     resolver: zodResolver(schema),
   });
 
-  const showErrorAlert = (message) => {
-    window.alert(message);
-    setErrorMessage(message);
-  };
-
   const onSubmit = async (values) => {
     setIsLoading(true);
     try {
       const result = await LoginService(values);
       if (result.success) {
-        showErrorAlert(result.message); // Show success message if needed
         navigate("/");
-      } else {
-        showErrorAlert(result.message);
+        // window.location.reload();
       }
     } catch (error) {
-      showErrorAlert("Une erreur s'est produite");
+      console.log("Une erreur s'est produite", error);
     } finally {
       setIsLoading(false);
     }
   };
-
+  useEffect(() => {
+    dispatch(refreshAuthState());
+  }, [dispatch]);
   return (
     <>
       {submitCount > 3 && (
