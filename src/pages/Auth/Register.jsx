@@ -2,22 +2,27 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from "axios";
 import { BASE_URL } from '../../../config';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const navigateLogin = useNavigate();
 
     const [successMessage, setSuccessMessage] = useState("");
-
+    const [erreurs, setErrorMessage] = useState({});
     const onSubmit = async (data) => {
-
         try {
             const response = await axios.post(`${BASE_URL}/api/register`, data);
             setSuccessMessage("Registration successful!");
+            navigateLogin('/login');
         } catch (error) {
-            console.error("There was an error submitting the form:", error);
+            if (error.response && error.response.data && error.response.data.errors) {
+                setErrorMessage(error.response.data.errors);
+            } else {
+                console.error("There was an error submitting the form:", error);
+            }
         }
     };
-
 
     return (
         <>
@@ -45,10 +50,11 @@ export default function Register() {
                                 <input
                                     type="text"
                                     id="first_name"
-                                    {...register("first_name", { required: "First name is required" })}
+                                    {...register("first_name")}
                                     className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
                                 />
-                                {errors.first_name && <p className="text-red-500 text-sm">{errors.first_name.message}</p>}
+                                
+                                {erreurs.first_name && <p className="text-red-500 text-sm">{erreurs.first_name[0]}</p>}
                             </div>
 
                             <div>
@@ -58,10 +64,11 @@ export default function Register() {
                                 <input
                                     type="text"
                                     id="last_name"
-                                    {...register("last_name", { required: "Last name is required" })}
+                                    {...register("last_name")}
                                     className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
                                 />
-                                {errors.last_name && <p className="text-red-500 text-sm">{errors.last_name.message}</p>}
+                              
+                                {erreurs.last_name && <p className="text-red-500 text-sm">{erreurs.last_name[0]}</p>}
                             </div>
 
                             <div>
@@ -71,16 +78,11 @@ export default function Register() {
                                 <input
                                     type="email"
                                     id="email"
-                                    {...register("email", {
-                                        required: "Email is required",
-                                        pattern: {
-                                            value: /^\S+@\S+$/i,
-                                            message: "Invalid email address",
-                                        },
-                                    })}
+                                    {...register("email")}
                                     className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
                                 />
-                                {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+                              
+                                {erreurs.email && <p className="text-red-500 text-sm">{erreurs.email[0]}</p>}
                             </div>
 
                             <div>
@@ -90,10 +92,11 @@ export default function Register() {
                                 <input
                                     type="password"
                                     id="password"
-                                    {...register("password", { required: "Password is required", minLength: 6 })}
+                                    {...register("password")}
                                     className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
                                 />
-                                {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
+                              
+                                {erreurs.password && <p className="text-red-500 text-sm">{erreurs.password[0]}</p>}
                             </div>
 
                             <div>
@@ -103,14 +106,11 @@ export default function Register() {
                                 <input
                                     type="password"
                                     id="password_confirmation"
-                                    {...register("password_confirmation", {
-                                        required: "Confirm password is required",
-                                        validate: value => value === watch('password') || "Passwords do not match"
-                                    })}
-
+                                    {...register("password_confirmation")}
                                     className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
                                 />
-                                {errors.password_confirmation && <p className="text-red-500 text-sm">{errors.password_confirmation.message}</p>}
+                             
+                                {erreurs.password_confirmation && <p className="text-red-500 text-sm">{erreurs.password_confirmation[0]}</p>}
                             </div>
 
                             <div>
