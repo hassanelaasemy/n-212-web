@@ -78,8 +78,6 @@ export default function BestContentComp() {
                     className="relative inline-block h-8 w-8 rounded-full"
                   />
                 )}
-
-
                 <div className="flex flex-col ml-3 text-sm">
                   <span className="text-slate-800 font-semibold">
                     {chain?.user?.fullName}
