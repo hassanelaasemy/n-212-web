@@ -44,6 +44,11 @@ export default function Login() {
     } catch (error) {
       console.log("Une erreur s'est produite", error);
 
+        navigate("/");
+      }
+    } catch (error) {
+      console.log("Une erreur s'est produite", error);
+
     } finally {
       setIsLoading(false);
     }
