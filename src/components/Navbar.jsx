@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../../config";
 import { toggleTheme } from "../../redux/ThemeSlice";
 import { logout } from "../../redux/authSlice";
-import { useNavigation } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
 import { fetchUser } from "../../redux/userSlice";
 
 const Navbar = () => {
@@ -13,16 +13,16 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const theme = useSelector((state) => state.theme.theme);
-  const navigate= useNavigation
+  const navigate = useNavigation;
   const handleToggle = () => {
     dispatch(toggleTheme());
   };
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/login')
+    navigate("/login");
   };
   useEffect(() => {
-    dispatch(fetchUser);
+    dispatch(fetchUser());
   }, [dispatch]);
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -157,14 +157,14 @@ const Navbar = () => {
                   aria-orientation="vertical"
                   aria-labelledby="user-menu-button"
                 >
-                  <a
-                    href="#"
+                  <Link
+                    to="/profile"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     role="menuitem"
                     id="user-menu-item-0"
                   >
                     Your Profile
-                  </a>
+                  </Link>
                   <a
                     href="#"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -174,7 +174,7 @@ const Navbar = () => {
                     Settings
                   </a>
                   <a
-                  onClick={handleLogout}
+                    onClick={handleLogout}
                     href="#"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     role="menuitem"

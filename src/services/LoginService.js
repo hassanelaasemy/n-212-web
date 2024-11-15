@@ -26,17 +26,6 @@ export const LoginService = async (values) => {
             "Une erreur est survenue lors de la connexion. Veuillez réessayer.",
         };
       }
-    } else if (error.request) {
-      return {
-        success: false,
-        message: "Aucune réponse reçue du serveur. Veuillez réessayer.",
-      };
-    } else {
-      return {
-        success: false,
-        message:
-          "Une erreur est survenue lors de la connexion. Veuillez réessayer.",
-      };
     }
   }
 };
