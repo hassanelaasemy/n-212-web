@@ -160,8 +160,7 @@ const Navbar = () => {
                   aria-orientation="vertical"
                   aria-labelledby="user-menu-button"
                 >
-
-                  <SightingLink title={'Profile'} linkId={'profile'} Icon={faUser} />
+                  <SightingLink title={'Profile'} linkId={'profile'} Icon={faUser} link={"/profile"}/>
                   <SightingLink title={'Favorit'} linkId={'favorit'} Icon={faHeart} />
                   <SightingLink title={'Password and security'} linkId={'password'} Icon={faShield} />
                   <SightingLink title={'My courses'} linkId={'courses'} Icon={faSchool} />
