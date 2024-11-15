@@ -6,6 +6,8 @@ import { toggleTheme } from "../../redux/ThemeSlice";
 import { logout } from "../../redux/authSlice";
 import { Link, useNavigation } from "react-router-dom";
 import { fetchUser } from "../../redux/userSlice";
+import SightingLink from "./SightingLink";
+import { faBullseye, faCircleCheck, faCircleInfo, faCircleQuestion, faFileLines, faHeadphones, faHeart, faNewspaper, faRightFromBracket, faSchool, faShield, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -157,31 +159,19 @@ const Navbar = () => {
                   aria-orientation="vertical"
                   aria-labelledby="user-menu-button"
                 >
-                  <Link
-                    to="/profile"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    role="menuitem"
-                    id="user-menu-item-0"
-                  >
-                    Your Profile
-                  </Link>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    role="menuitem"
-                    id="user-menu-item-1"
-                  >
-                    Settings
-                  </a>
-                  <a
-                    onClick={handleLogout}
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    role="menuitem"
-                    id="user-menu-item-2"
-                  >
-                    Sign out
-                  </a>
+
+                  <SightingLink title={'Profile'} linkId={'profile'} Icon={faUser} />
+                  <SightingLink title={'Favorit'} linkId={'favorit'} Icon={faHeart} />
+                  <SightingLink title={'Password and security'} linkId={'password'} Icon={faShield} />
+                  <SightingLink title={'My courses'} linkId={'courses'} Icon={faSchool} />
+                  <SightingLink title={'Completed courses'} linkId={'complete_courses'} Icon={faCircleCheck} />
+                  <SightingLink title={'My topics'} linkId={'topics'} Icon={faNewspaper} />
+                  <SightingLink title={'My goals'} linkId={'goals'} Icon={faBullseye} />
+                  <SightingLink title={'My Complaints'} linkId={'complaints'} Icon={faFileLines} />
+                  <SightingLink title={'About Us'} linkId={'About'} Icon={faCircleInfo} />
+                  <SightingLink title={'Help and Support'} linkId={'support'} Icon={faHeadphones} />
+                  <SightingLink title={'FAQ'} linkId={'faq'} Icon={faCircleQuestion} />
+                  <SightingLink title={'Sign out'} linkId={'logout'} methode={handleLogout} Icon={faRightFromBracket} />
                 </div>
               )}
             </div>
@@ -189,11 +179,10 @@ const Navbar = () => {
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse p-2">
             <button
               onClick={handleToggle}
-              className={`p-2 rounded-full focus:outline-none transition ${
-                theme === "dark"
-                  ? "bg-gray-700 text-white"
-                  : "bg-gray-200 text-black"
-              }`}
+              className={`p-2 rounded-full focus:outline-none transition ${theme === "dark"
+                ? "bg-gray-700 text-white"
+                : "bg-gray-200 text-black"
+                }`}
             >
               {theme === "light" ? (
                 <svg
@@ -274,12 +263,12 @@ const Navbar = () => {
           >
             Reels
           </a>
-          <a
-            href="#"
+          <Link
+            to="/content"
             className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
           >
             Courses
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
