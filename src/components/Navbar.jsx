@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser } from "../../redux/UserSlice";
+
 import { BASE_URL } from "../../config";
 import { toggleTheme } from "../../redux/ThemeSlice";
 import { logout } from "../../redux/authSlice";
 import { useNavigation } from "react-router-dom";
+import { fetchUser } from "../../redux/userSlice";
 
 const Navbar = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -21,7 +22,7 @@ const Navbar = () => {
     navigate('/login')
   };
   useEffect(() => {
-    dispatch(fetchUser());
+    dispatch(fetchUser);
   }, [dispatch]);
   useEffect(() => {
     const handleClickOutside = (event) => {
