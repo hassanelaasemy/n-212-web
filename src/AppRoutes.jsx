@@ -13,6 +13,7 @@ import Authenticated from "./Layout/Authenticated";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Auth/Register";
+import HomeCours from "./pages/Cours/HomeCours";
 
 export default function AppRoutes() {
   const loggedIn = useSelector((state) => state.auth.isAuthenticated);
@@ -23,6 +24,7 @@ export default function AppRoutes() {
         <Authenticated>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/content" element={<HomeCours />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Authenticated>

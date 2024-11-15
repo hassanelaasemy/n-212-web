@@ -16,7 +16,7 @@ const ContentApi = {
     return response.data;
   },
   getFormationContent: async () => {
-    const token =  localStorage.getItem("token");
+    const token = localStorage.getItem("token");
     const response = await CustomAxios.get("/api/content/formation", {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -32,6 +32,18 @@ const ContentApi = {
     const response = await CustomAxios.get("/api/content/chaine");
     return response.data;
   },
+
+  //content  by Id
+  getContentDetailById: async (id) => {
+    const token = await localStorage.getItem("token");
+    const response = await CustomAxios.get(`/api/content/edite/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  },
+  //content  by Id //
   getEvents: async () => {
     const response = await CustomAxios.get("/api/event");
     return response.data;

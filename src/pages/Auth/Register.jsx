@@ -11,7 +11,7 @@ export default function Register() {
     const [erreurs, setErrorMessage] = useState({});
     const onSubmit = async (data) => {
         try {
-            const response = RegisterService(data, setErrorMessage, setSuccessMessage , navigateLogin)
+            const response = RegisterService(data, setErrorMessage, setSuccessMessage, navigateLogin)
         } catch (error) {
             console.log(error);
         }
@@ -21,9 +21,9 @@ export default function Register() {
         <>
             <div className="flex h-full">
                 {/* Left Pane */}
-                <div className="lg:flex items-center justify-center flex-1 bg-gray-200 text-black">
+                <div className="lg:flex items-center justify-center flex-1  text-black">
                     <div className="max-w-md text-center ">
-                        <img src="../../../public/logomain.png" alt="Logo" />
+                        <img src="../../public/logomain.png" />
                     </div>
                 </div>
                 {/* Right Pane */}
@@ -36,33 +36,36 @@ export default function Register() {
                             Join to Our Community with all-time access and free
                         </h1>
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                            <div>
-                                <label htmlFor="first_name" className="block text-sm font-medium text-gray-700">
-                                    First Name
-                                </label>
-                                <input
-                                    type="text"
-                                    id="first_name"
-                                    {...register("first_name")}
-                                    className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
-                                />
+                            <div className="grid grid-cols-12 gap-4">
+                                {/* First Name */}
+                                <div className="col-span-6">
+                                    <label htmlFor="first_name" className="block text-sm font-medium text-gray-700">
+                                        First Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="first_name"
+                                        {...register("first_name")}
+                                        className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
+                                    />
+                                    {erreurs.first_name && <p className="text-red-500 text-sm">{erreurs.first_name[0]}</p>}
+                                </div>
 
-                                {erreurs.first_name && <p className="text-red-500 text-sm">{erreurs.first_name[0]}</p>}
+                                {/* Last Name */}
+                                <div className="col-span-6">
+                                    <label htmlFor="last_name" className="block text-sm font-medium text-gray-700">
+                                        Last Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="last_name"
+                                        {...register("last_name")}
+                                        className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
+                                    />
+                                    {erreurs.last_name && <p className="text-red-500 text-sm">{erreurs.last_name[0]}</p>}
+                                </div>
                             </div>
 
-                            <div>
-                                <label htmlFor="last_name" className="block text-sm font-medium text-gray-700">
-                                    Last Name
-                                </label>
-                                <input
-                                    type="text"
-                                    id="last_name"
-                                    {...register("last_name")}
-                                    className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
-                                />
-
-                                {erreurs.last_name && <p className="text-red-500 text-sm">{erreurs.last_name[0]}</p>}
-                            </div>
 
                             <div>
                                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
