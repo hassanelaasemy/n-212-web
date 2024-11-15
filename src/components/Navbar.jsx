@@ -1,169 +1,288 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchUser } from "../../redux/UserSlice";
+import { BASE_URL } from "../../config";
 import { toggleTheme } from "../../redux/ThemeSlice";
-import { Home, Film, BookOpen, User } from "lucide-react";
-import { Link } from "react-router-dom";
+import { logout } from "../../redux/authSlice";
+import { useNavigation } from "react-router-dom";
 
-export default function Navbar() {
-  const theme = useSelector((state) => state.theme.theme);
+const Navbar = () => {
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+  const theme = useSelector((state) => state.theme.theme);
+  const navigate= useNavigation
   const handleToggle = () => {
     dispatch(toggleTheme());
   };
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/login')
+  };
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        !event.target.closest("#user-menu-button") &&
+        !event.target.closest("#user-menu")
+      ) {
+        setIsProfileOpen(false);
+      }
+      if (
+        !event.target.closest("#mobile-menu-button") &&
+        !event.target.closest("#mobile-menu")
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+      console.log(user);
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
 
   return (
     <nav
-      className={`fixed w-full z-20 top-0 start-0 border-b ${
-        theme === "dark"
-          ? "bg-gray-900 border-gray-600"
-          : "bg-white border-gray-200"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{
+        backgroundColor: theme === "dark" ? "black" : "white",
+      }}
     >
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link
-          to="/"
-          className="flex items-center space-x-3 rtl:space-x-reverse"
-        >
-          <img
-            src={
-              theme === "dark" ? "../../logolight.png" : "../../logodark.png"
-            }
-            className="h-8"
-            alt="N-212 Logo"
-          />
-        </Link>
-        <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <button
-            onClick={handleToggle}
-            className={`p-2 rounded-full focus:outline-none transition ${
-              theme === "dark"
-                ? "bg-gray-700 text-white"
-                : "bg-gray-200 text-black"
-            }`}
-          >
-            {theme === "light" ? (
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 3v1m0 16v1m8.66-8.66h-1M4.34 12H3m14.14-6.86l-.7.7M6.34 17.66l-.7.7M21 12a9 9 0 11-9-9 9 9 0 019 9z"
-                ></path>
-              </svg>
-            ) : (
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"
-                ></path>
-              </svg>
-            )}
-          </button>
-          <button
-            data-collapse-toggle="navbar-sticky"
-            type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-sticky"
-            aria-expanded="false"
-          >
-            <span className="sr-only">Open main menu</span>
-            <svg
-              className="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 17 14"
+      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div className="relative flex h-16 items-center justify-between ">
+          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <button
+              type="button"
+              id="mobile-menu-button"
+              className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              aria-controls="mobile-menu"
+              aria-expanded={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              <path
+              <span className="absolute -inset-0.5" />
+              <span className="sr-only">Open main menu</span>
+              <svg
+                className={`${isMobileMenuOpen ? "hidden" : "block"} size-6`}
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
                 stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M1 1h15M1 7h15M1 13h15"
+                aria-hidden="true"
+                data-slot="icon"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+              <svg
+                className={`${isMobileMenuOpen ? "block" : "hidden"} size-6`}
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+                data-slot="icon"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+            <div className="flex shrink-0 items-center">
+              <img
+                className="h-8 w-auto"
+                src={theme === "dark" ? "/logolight.png" : "/logodark.png"}
+                alt="N-212"
               />
-            </svg>
-          </button>
+            </div>
+            <div className="hidden sm:ml-6 sm:block">
+              <div className="flex space-x-4">
+                <a
+                  href="#"
+                  className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                  aria-current="page"
+                >
+                  Home
+                </a>
+                <a
+                  href="#"
+                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                >
+                  Reels
+                </a>
+                <a
+                  href="#"
+                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                >
+                  Courses
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <div className="relative ml-3">
+              <div>
+                <button
+                  type="button"
+                  className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  id="user-menu-button"
+                  aria-expanded={isProfileOpen}
+                  aria-haspopup="true"
+                  onClick={() => setIsProfileOpen(!isProfileOpen)}
+                >
+                  <span className="absolute -inset-1.5" />
+                  <span className="sr-only">Open user menu</span>
+                  <img
+                    className="size-10 rounded-full"
+                    src={BASE_URL + `/storage/avatars/${user?.avatar}`}
+                    alt={user?.firstName}
+                  />
+                </button>
+              </div>
+              {/* Profile dropdown menu */}
+              {isProfileOpen && (
+                <div
+                  id="user-menu"
+                  className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="user-menu-button"
+                >
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    role="menuitem"
+                    id="user-menu-item-0"
+                  >
+                    Your Profile
+                  </a>
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    role="menuitem"
+                    id="user-menu-item-1"
+                  >
+                    Settings
+                  </a>
+                  <a
+                  onClick={handleLogout}
+                    href="#"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    role="menuitem"
+                    id="user-menu-item-2"
+                  >
+                    Sign out
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse p-2">
+            <button
+              onClick={handleToggle}
+              className={`p-2 rounded-full focus:outline-none transition ${
+                theme === "dark"
+                  ? "bg-gray-700 text-white"
+                  : "bg-gray-200 text-black"
+              }`}
+            >
+              {theme === "light" ? (
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 3v1m0 16v1m8.66-8.66h-1M4.34 12H3m14.14-6.86l-.7.7M6.34 17.66l-.7.7M21 12a9 9 0 11-9-9 9 9 0 019 9z"
+                  ></path>
+                </svg>
+              ) : (
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"
+                  ></path>
+                </svg>
+              )}
+            </button>
+            <button
+              data-collapse-toggle="navbar-sticky"
+              type="button"
+              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              aria-controls="navbar-sticky"
+              aria-expanded="false"
+            >
+              <span className="sr-only">Open main menu</span>
+              <svg
+                className="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 17 14"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M1 1h15M1 7h15M1 13h15"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
-        <div
-          className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-          id="navbar-sticky"
-        >
-          <ul
-            className={`flex flex-col p-4 md:p-0 mt-4 font-medium border rounded-lg ${
-              theme === "dark"
-                ? "border-gray-700 bg-gray-800 md:bg-gray-900"
-                : "border-gray-100 bg-gray-50 md:bg-white"
-            } md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0`}
+      </div>
+
+      {/* Mobile menu */}
+      <div
+        className={`${isMobileMenuOpen ? "block" : "hidden"} sm:hidden`}
+        id="mobile-menu"
+      >
+        <div className="space-y-1 px-2 pb-3 pt-2">
+          <a
+            href="#"
+            className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
+            aria-current="page"
           >
-            <li>
-              <a
-                href="#"
-                className={`flex items-center py-2 px-3 rounded ${
-                  theme === "dark"
-                    ? "text-white hover:bg-gray-700 md:hover:bg-transparent md:hover:text-blue-500"
-                    : "text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700"
-                }`}
-                aria-current="Home"
-              >
-                <Home className="w-4 h-4 mr-2" />
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className={`flex items-center py-2 px-3 rounded ${
-                  theme === "dark"
-                    ? "text-white hover:bg-gray-700 md:hover:bg-transparent md:hover:text-blue-500"
-                    : "text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700"
-                }`}
-              >
-                <Film className="w-4 h-4 mr-2" />
-                Reels
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className={`flex items-center py-2 px-3 rounded ${
-                  theme === "dark"
-                    ? "text-white hover:bg-gray-700 md:hover:bg-transparent md:hover:text-blue-500"
-                    : "text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700"
-                }`}
-              >
-                <BookOpen className="w-4 h-4 mr-2" />
-                Courses
-              </a>
-            </li>
-            <li>
-              <Link
-                to="/login"
-                className={`flex items-center py-2 px-3 rounded ${
-                  theme === "dark"
-                    ? "text-white hover:bg-gray-700 md:hover:bg-transparent md:hover:text-blue-500"
-                    : "text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700"
-                }`}
-              >
-                <User className="w-4 h-4 mr-2" />
-                Profile
-              </Link>
-            </li>
-          </ul>
+            Home
+          </a>
+          <a
+            href="#"
+            className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+          >
+            Reels
+          </a>
+          <a
+            href="#"
+            className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+          >
+            Courses
+          </a>
         </div>
       </div>
     </nav>
   );
-}
+};
+
+export default Navbar;

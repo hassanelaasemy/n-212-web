@@ -4,8 +4,7 @@ export const LoginService = async (values) => {
   try {
     const response = await axios.post(BASE_URL + "/api/login", values);
     const token = response.data.token;
-    await localStorage.setItem("userId", response.data.user.id.toString());
-    await localStorage.setItem("token", token);
+    localStorage.setItem("token", token);
     return { success: true, message: "Connectez-vous avec succès" };
   } catch (error) {
     if (error.response && error.response.data) {
@@ -40,5 +39,4 @@ export const LoginService = async (values) => {
       };
     }
   }
-
 };
