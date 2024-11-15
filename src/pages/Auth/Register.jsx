@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import axios from "axios";
-import { BASE_URL } from '../../../config';
-import { useNavigate } from 'react-router-dom';
+import { RegisterService } from '../../services/RegisterService';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Register() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -12,15 +11,9 @@ export default function Register() {
     const [erreurs, setErrorMessage] = useState({});
     const onSubmit = async (data) => {
         try {
-            const response = await axios.post(`${BASE_URL}/api/register`, data);
-            setSuccessMessage("Registration successful!");
-            navigateLogin('/login');
+            const response = RegisterService(data, setErrorMessage, setSuccessMessage , navigateLogin)
         } catch (error) {
-            if (error.response && error.response.data && error.response.data.errors) {
-                setErrorMessage(error.response.data.errors);
-            } else {
-                console.error("There was an error submitting the form:", error);
-            }
+            console.log(error);
         }
     };
 
@@ -53,7 +46,7 @@ export default function Register() {
                                     {...register("first_name")}
                                     className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
                                 />
-                                
+
                                 {erreurs.first_name && <p className="text-red-500 text-sm">{erreurs.first_name[0]}</p>}
                             </div>
 
@@ -67,7 +60,7 @@ export default function Register() {
                                     {...register("last_name")}
                                     className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
                                 />
-                              
+
                                 {erreurs.last_name && <p className="text-red-500 text-sm">{erreurs.last_name[0]}</p>}
                             </div>
 
@@ -81,7 +74,7 @@ export default function Register() {
                                     {...register("email")}
                                     className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
                                 />
-                              
+
                                 {erreurs.email && <p className="text-red-500 text-sm">{erreurs.email[0]}</p>}
                             </div>
 
@@ -95,7 +88,7 @@ export default function Register() {
                                     {...register("password")}
                                     className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
                                 />
-                              
+
                                 {erreurs.password && <p className="text-red-500 text-sm">{erreurs.password[0]}</p>}
                             </div>
 
@@ -109,7 +102,7 @@ export default function Register() {
                                     {...register("password_confirmation")}
                                     className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
                                 />
-                             
+
                                 {erreurs.password_confirmation && <p className="text-red-500 text-sm">{erreurs.password_confirmation[0]}</p>}
                             </div>
 
@@ -125,9 +118,9 @@ export default function Register() {
                         <div className="mt-4 text-sm text-gray-600 text-center">
                             <p>
                                 Already have an account?{" "}
-                                <a href="/login" className="text-black hover:underline">
+                                <Link to="/login" className="text-black hover:underline">
                                     Login here
-                                </a>
+                                </Link>
                             </p>
                         </div>
                     </div>
