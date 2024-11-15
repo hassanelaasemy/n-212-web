@@ -1,4 +1,4 @@
-import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 import BestContentComp from "../components/Home/BestContentComp";
 import Commingsoonsection from "../components/Home/Commingsoonsection";
 import Event from "../components/Home/Event";
@@ -12,6 +12,7 @@ import TitleHead from "../components/TitleHead";
 export default function Home() {
   return (
     <>
+      <Navbar />
       <Commingsoonsection />
       <TitleHead title={"Quickly"} />
       <ReelsComp />

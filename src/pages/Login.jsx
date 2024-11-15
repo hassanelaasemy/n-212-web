@@ -11,12 +11,10 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const [errorMessage, setErrorMessage] = useState(null);
   const schema = z.object({
     email: z.string().email("Adresse e-mail invalide"),
-    password: z
-      .string()
-      .min(8, "Le mot de passe doit contenir au moins 8 caractères"),
+    password: z.string().min(1, "Le mot de passe est requis"),
   });
   const {
     register,
@@ -35,13 +33,14 @@ export default function Login() {
     try {
       const result = await LoginService(values);
       if (result.success) {
+        setErrorMessage(result.message);
         navigate("/");
       } else {
+        setErrorMessage(result.message);
         console.log(result.message);
       }
     } catch (error) {
-      console.log(error);
-      console.log("Une erreur s'est produite", error);
+      setErrorMessage("Une erreur s'est produite", error);
     } finally {
       setIsLoading(false);
     }
@@ -74,7 +73,7 @@ export default function Login() {
         </div>
       )}
       <div className="flex h-full">
-        <div className="lg:flex items-center justify-center flex-1 bg-gray-200 text-black">
+        <div className="lg:flex items-center justify-center flex-1  text-black">
           <div className="max-w-md text-center ">
             <img src="../../public/logomain.png" />
           </div>
@@ -136,6 +135,9 @@ export default function Login() {
                 </button>
               </div>
             </form>
+              {errorMessage && (
+                <span className="text-red-500">{errorMessage}</span>
+              )}
             <div className="mt-4 text-sm text-gray-600 text-center">
               <p>
                 you dont have an account?
