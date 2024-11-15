@@ -17,7 +17,7 @@ export default function UserProfile() {
                 className="block p-3 hover:bg-gray-100"
                 href="#account-change-password"
               >
-                Change password
+                Modifier password
               </a>
             </div>
           </div>
