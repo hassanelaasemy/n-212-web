@@ -22,7 +22,7 @@ const Navbar = () => {
     navigate('/login')
   };
   useEffect(() => {
-    dispatch(fetchUser);
+    dispatch(fetchUser());
   }, [dispatch]);
   useEffect(() => {
     const handleClickOutside = (event) => {
