@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../../config";
 import { toggleTheme } from "../../redux/ThemeSlice";
 import { logout } from "../../redux/authSlice";
-import { useNavigation } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
 import { fetchUser } from "../../redux/userSlice";
 
 const Navbar = () => {
@@ -13,7 +13,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const theme = useSelector((state) => state.theme.theme);
-  const navigate= useNavigation
+  const navigate = useNavigation
   const handleToggle = () => {
     dispatch(toggleTheme());
   };
@@ -174,7 +174,7 @@ const Navbar = () => {
                     Settings
                   </a>
                   <a
-                  onClick={handleLogout}
+                    onClick={handleLogout}
                     href="#"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     role="menuitem"
@@ -189,11 +189,10 @@ const Navbar = () => {
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse p-2">
             <button
               onClick={handleToggle}
-              className={`p-2 rounded-full focus:outline-none transition ${
-                theme === "dark"
-                  ? "bg-gray-700 text-white"
-                  : "bg-gray-200 text-black"
-              }`}
+              className={`p-2 rounded-full focus:outline-none transition ${theme === "dark"
+                ? "bg-gray-700 text-white"
+                : "bg-gray-200 text-black"
+                }`}
             >
               {theme === "light" ? (
                 <svg
@@ -274,12 +273,12 @@ const Navbar = () => {
           >
             Reels
           </a>
-          <a
-            href="#"
+          <Link
+            to="/content"
             className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
           >
             Courses
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
