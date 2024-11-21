@@ -3,10 +3,15 @@ import ContentApi from "../../../Api/ContentApis";
 import { useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "../../../config";
 import { useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { PostCommentService } from '../../services/PostCommentService';
 
 export default function CommentCours({ content }) {
 
+
     const theme = useSelector((state) => state.theme.theme);
+
+    const { register, handleSubmit, formState: { errors } } = useForm()
 
     const { data: comments = [], isLoading: commentIsLoading, error: commentError } = useQuery({
         queryKey: ["contentComment", content?.id],
@@ -17,6 +22,17 @@ export default function CommentCours({ content }) {
         },
     });
 
+    const onSubmit = async (data) => {
+        try {
+            const response = await PostCommentService(content.id, data.comment)
+            console.log(response);
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+
 
     if (commentIsLoading) return <div>Loading...</div>;
 
@@ -26,14 +42,14 @@ export default function CommentCours({ content }) {
                 <div className="flex justify-between items-center mb-6">
                     <h2 className={`text-lg lg:text-2xl font-bold  text-gray-900 ${theme === 'dark' ? 'text-white' : ''} dark:text-white`}>Discussion ({comments.length})</h2>
                 </div>
-                <form className="mb-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="mb-6">
                     <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                         <label for="comment" className="sr-only">Your comment</label>
-                        <textarea id="comment" rows="6" 
+                        <textarea id="comment" rows="6" {...register("comment")}
                             className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
                             placeholder="Write a comment..." required></textarea>
                     </div>
-                    <button type="button" className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Post</button>
+                    <button type="submit" className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Post</button>
                 </form>
 
                 {comments.map((comment) => (

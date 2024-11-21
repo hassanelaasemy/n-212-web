@@ -4,7 +4,7 @@ import { RegisterService } from '../../services/RegisterService';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Register() {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const navigateLogin = useNavigate();
 
     const [successMessage, setSuccessMessage] = useState("");

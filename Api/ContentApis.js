@@ -140,9 +140,9 @@ const ContentApi = {
     return response.data;
   },
   postComment: async (courseId, comment) => {
-    if (!comment.trim()) {
-      return;
-    }
+    // if (!comment.trim()) {
+    //   return;
+    // }
     const token = await localStorage.getItem("token");
     const response = await CustomAxios.post(
       `/api/content/store/comment/${courseId}`,
