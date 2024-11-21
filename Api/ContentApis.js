@@ -36,7 +36,7 @@ const ContentApi = {
   //content  by Id
   getContentDetailById: async (id) => {
     const token = await localStorage.getItem("token");
-    const response = await CustomAxios.get(`/api/content/edite/`, {
+    const response = await CustomAxios.get(`/api/content/edite/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -175,7 +175,7 @@ const ContentApi = {
     });
     return response.data;
   },
-  getPodcatVideoById: async (podcastId) => {
+  getVideoById: async (podcastId) => {
     const response = await CustomAxios.get(`/api/video/${podcastId}`);
     return response.data;
   },

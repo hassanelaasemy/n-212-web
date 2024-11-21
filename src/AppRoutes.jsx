@@ -17,6 +17,7 @@ import Register from "./pages/Auth/Register";
 import HomeCours from "./pages/Cours/HomeCours";
 
 import UserProfile from "./pages/user/UserProfile";
+import DetailCours from "./pages/Cours/DetailCours";
 
 
 export default function AppRoutes() {
@@ -31,7 +32,7 @@ export default function AppRoutes() {
             <Route path="/content" element={<HomeCours />} />
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/profile" element={<UserProfile />} />
-
+            <Route path="/content/show/:id" element={<DetailCours />} />
           </Routes>
         </Authenticated>
       ) : (

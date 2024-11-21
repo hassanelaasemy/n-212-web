@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { BASE_URL } from "../../config";
 import { toggleTheme } from "../../redux/ThemeSlice";
 import { logout } from "../../redux/authSlice";

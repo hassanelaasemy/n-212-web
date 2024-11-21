@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "../../../config";
 import { COLORS } from "../../../constant/theme";
 
+
 export default function FormationContent() {
   const {
     isLoading,
@@ -20,6 +21,9 @@ export default function FormationContent() {
       console.log("Error loading courseData.", error);
     },
   });
+
+  console.log(courseData);
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
   return (
@@ -48,7 +52,7 @@ export default function FormationContent() {
     >
       {courseData.map((formation, index) => (
         <SwiperSlide key={index}>
-          <a href="javascript:void(0)">
+          <a href={`/content/show/${formation.cryptId}`}>
             <div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96">
               <div className="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
                 <img
