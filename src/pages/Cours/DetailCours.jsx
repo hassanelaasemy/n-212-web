@@ -41,10 +41,12 @@ export default function DetailCours() {
 
                 <CoursVideoDetail content={content} />
 
+                <CommentCours content={content} />
+
 
             </div>
             <div className="col-span-12 w-full sm:col-span-4 comment_cours">
-                <CommentCours content={content} />
+               
 
             </div>
         </div>

@@ -11,7 +11,7 @@ export default function Register() {
     const [erreurs, setErrorMessage] = useState({});
     const onSubmit = async (data) => {
         try {
-            const response = RegisterService(data, setErrorMessage, setSuccessMessage, navigateLogin)
+            const response = await RegisterService(data, setErrorMessage, setSuccessMessage, navigateLogin)
         } catch (error) {
             console.log(error);
         }
