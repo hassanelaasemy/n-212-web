@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { BASE_URL } from "../../config";
 import { toggleTheme } from "../../redux/ThemeSlice";
 import { logout } from "../../redux/authSlice";
@@ -15,7 +14,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const theme = useSelector((state) => state.theme.theme);
-  const navigate = useNavigation;
+  const navigate = useNavigation
   const handleToggle = () => {
     dispatch(toggleTheme());
   };
@@ -171,6 +170,7 @@ const Navbar = () => {
                   <SightingLink title={'Help and Support'} linkId={'support'} Icon={faHeadphones} />
                   <SightingLink title={'FAQ'} linkId={'faq'} Icon={faCircleQuestion} />
                   <SightingLink title={'Sign out'} linkId={'logout'} methode={handleLogout} Icon={faRightFromBracket} />
+
                 </div>
               )}
             </div>

@@ -36,12 +36,12 @@ export default function BestContentComp() {
       }}
       modules={[Pagination]}
       className="mySwiper"
-      style={{ height: "474px" ,  }}
+      style={{ height: "474px", }}
     >
       {chains.map((chain, index) => (
         <SwiperSlide key={index}>
           <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
+            <a href={`/content/show/${chain.cryptId}`}>
               <img
                 className="rounded-t-lg w-full"
                 style={{ height: "215px" }}

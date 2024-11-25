@@ -4,14 +4,14 @@ import { RegisterService } from '../../services/RegisterService';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Register() {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const navigateLogin = useNavigate();
 
     const [successMessage, setSuccessMessage] = useState("");
     const [erreurs, setErrorMessage] = useState({});
     const onSubmit = async (data) => {
         try {
-            const response = RegisterService(data, setErrorMessage, setSuccessMessage, navigateLogin)
+            const response = await RegisterService(data, setErrorMessage, setSuccessMessage, navigateLogin)
         } catch (error) {
             console.log(error);
         }

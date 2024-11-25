@@ -1,0 +1,18 @@
+@media (min-width: 768px)  {
+    .comment_cours {
+        position: relative;
+        top: -653px;
+    }
+    
+   
+}
+    
+
+@media (min-width: 1280)  {
+    .comment_cours {
+        position: relative;
+        top: -772px;
+    }
+
+   
+}

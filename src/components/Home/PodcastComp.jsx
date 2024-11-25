@@ -15,6 +15,9 @@ export default function PodcastComp() {
     },
   });
 
+  console.log(items);
+
+
   if (isLoading) return <div>Loading...</div>;
   return (
     <Swiper
@@ -37,11 +40,14 @@ export default function PodcastComp() {
     >
       {items.map((slide, index) => (
         <SwiperSlide key={index}>
-          <img
-            className="image_swiper"
-            src={BASE_URL + `/storage/` + slide.image}
-            alt={slide.title}
-          />
+          <a href={`/content/show/${slide.cryptId}`}>
+            <img
+              className="image_swiper"
+              src={BASE_URL + `/storage/` + slide.image}
+              alt={slide.title}
+            />
+          </a>
+
         </SwiperSlide>
       ))}
     </Swiper>
