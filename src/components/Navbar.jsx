@@ -15,7 +15,6 @@ const Navbar = () => {
   const { user } = useSelector((state) => state.user);
   const theme = useSelector((state) => state.theme.theme);
   const navigate = useNavigation
-
   const handleToggle = () => {
     dispatch(toggleTheme());
   };
