@@ -13,7 +13,6 @@ import Authenticated from "./Layout/Authenticated";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Auth/Register";
-import UserProfile from "./pages/user/UserProfile";
 
 import HomeCours from "./pages/Cours/HomeCours";
 

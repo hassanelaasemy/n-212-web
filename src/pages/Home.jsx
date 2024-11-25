@@ -11,7 +11,8 @@ import TitleHead from "../components/TitleHead";
 
 export default function Home() {
   return (
-    <>
+    <div style={{
+    }}>
       <Navbar />
       <Commingsoonsection />
       <TitleHead title={"Quickly"} />
@@ -29,6 +30,6 @@ export default function Home() {
       <Speakers />
       <TaQaftBladiSection />
       {/* <Footer /> */}
-    </>
+    </div>
   );
 }
