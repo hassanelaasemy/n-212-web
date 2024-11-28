@@ -43,7 +43,7 @@ export default function CommentCours({ content }) {
     <section
       className={` ${
         theme === "datk" ? "bg-black" : ""
-      } border mt-2 border-gray-200 rounded-lg shadow py-8 lg:py-16 antialiased`}
+      } border mt-2 border-gray-200 rounded-lg  shadow py-8 lg:py-16 antialiased`}
     >
       <div className="max-w-2xl mx-auto px-4">
         <div className="flex justify-between items-center mb-6">

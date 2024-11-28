@@ -6,7 +6,20 @@ import { logout } from "../../redux/authSlice";
 import { Link, useNavigation } from "react-router-dom";
 import { fetchUser } from "../../redux/userSlice";
 import SightingLink from "./SightingLink";
-import { faBullseye, faCircleCheck, faCircleInfo, faCircleQuestion, faFileLines, faHeadphones, faHeart, faNewspaper, faRightFromBracket, faSchool, faShield, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBullseye,
+  faCircleCheck,
+  faCircleInfo,
+  faCircleQuestion,
+  faFileLines,
+  faHeadphones,
+  faHeart,
+  faNewspaper,
+  faRightFromBracket,
+  faSchool,
+  faShield,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -14,7 +27,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const theme = useSelector((state) => state.theme.theme);
-  const navigate = useNavigation
+  const navigate = useNavigation;
   const handleToggle = () => {
     dispatch(toggleTheme());
   };
@@ -99,11 +112,13 @@ const Navbar = () => {
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
-              <img
-                className="h-8 w-auto"
-                src={theme === "dark" ? "/logolight.png" : "/logodark.png"}
-                alt="N-212"
-              />
+              <Link to="/">
+                <img
+                  className="h-8 w-auto"
+                  src={theme === "dark" ? "/logolight.png" : "/logodark.png"}
+                  alt="N-212"
+                />
+              </Link>
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
@@ -158,19 +173,70 @@ const Navbar = () => {
                   aria-orientation="vertical"
                   aria-labelledby="user-menu-button"
                 >
-                  <SightingLink title={'Profile'} linkId={'profile'} Icon={faUser} link={"/profile"}/>
-                  <SightingLink title={'Favorit'} linkId={'favorit'} Icon={faHeart} />
-                  <SightingLink title={'Password and security'} linkId={'password'} Icon={faShield} />
-                  <SightingLink title={'My courses'} linkId={'courses'} Icon={faSchool} link={"/mycontent"} />
-                  <SightingLink title={'Completed courses'} linkId={'complete_courses'} Icon={faCircleCheck} />
-                  <SightingLink title={'My topics'} linkId={'topics'} Icon={faNewspaper} />
-                  <SightingLink title={'My goals'} linkId={'goals'} Icon={faBullseye} />
-                  <SightingLink title={'My Complaints'} linkId={'complaints'} Icon={faFileLines} />
-                  <SightingLink title={'About Us'} linkId={'About'} Icon={faCircleInfo} />
-                  <SightingLink title={'Help and Support'} linkId={'support'} Icon={faHeadphones} />
-                  <SightingLink title={'FAQ'} linkId={'faq'} Icon={faCircleQuestion} link={"/faq"} />
-                  <SightingLink title={'Sign out'} linkId={'logout'} methode={handleLogout} Icon={faRightFromBracket} />
-
+                  <SightingLink
+                    title={"Profile"}
+                    linkId={"profile"}
+                    Icon={faUser}
+                    link={"/profile"}
+                  />
+                  <SightingLink
+                    title={"Favorit"}
+                    linkId={"favorit"}
+                    Icon={faHeart}
+                  />
+                  <SightingLink
+                    title={"Password and security"}
+                    linkId={"password"}
+                    Icon={faShield}
+                  />
+                  <SightingLink
+                    title={"My courses"}
+                    linkId={"courses"}
+                    Icon={faSchool}
+                    link={"/mycontent"}
+                  />
+                  <SightingLink
+                    title={"Completed courses"}
+                    linkId={"complete_courses"}
+                    Icon={faCircleCheck}
+                  />
+                  <SightingLink
+                    title={"My topics"}
+                    linkId={"topics"}
+                    Icon={faNewspaper}
+                  />
+                  <SightingLink
+                    title={"My goals"}
+                    linkId={"goals"}
+                    Icon={faBullseye}
+                  />
+                  <SightingLink
+                    title={"My Complaints"}
+                    linkId={"complaints"}
+                    Icon={faFileLines}
+                  />
+                  <SightingLink
+                    title={"About Us"}
+                    linkId={"About"}
+                    Icon={faCircleInfo}
+                  />
+                  <SightingLink
+                    title={"Help and Support"}
+                    linkId={"support"}
+                    Icon={faHeadphones}
+                  />
+                  <SightingLink
+                    title={"FAQ"}
+                    linkId={"faq"}
+                    Icon={faCircleQuestion}
+                    link={"/faq"}
+                  />
+                  <SightingLink
+                    title={"Sign out"}
+                    linkId={"logout"}
+                    methode={handleLogout}
+                    Icon={faRightFromBracket}
+                  />
                 </div>
               )}
             </div>
@@ -178,10 +244,11 @@ const Navbar = () => {
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse p-2">
             <button
               onClick={handleToggle}
-              className={`p-2 rounded-full focus:outline-none transition ${theme === "dark"
-                ? "bg-gray-700 text-white"
-                : "bg-gray-200 text-black"
-                }`}
+              className={`p-2 rounded-full focus:outline-none transition ${
+                theme === "dark"
+                  ? "bg-gray-700 text-white"
+                  : "bg-gray-200 text-black"
+              }`}
             >
               {theme === "light" ? (
                 <svg

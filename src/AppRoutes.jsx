@@ -23,6 +23,7 @@ import FAQPage from "./pages/Faq/FAQPage";
 
 export default function AppRoutes() {
   const loggedIn = useSelector((state) => state.auth.isAuthenticated);
+  const theme = useSelector((state) => state.theme.theme);
 
   return (
     <Router>
@@ -47,6 +48,7 @@ export default function AppRoutes() {
           </Routes>
         </GuestLayout>
       )}
+      <div className={`h-64 ${theme === 'dark' ? 'bg-black' : ""}` }></div>
     </Router>
   );
 }
