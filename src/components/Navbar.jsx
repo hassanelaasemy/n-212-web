@@ -168,7 +168,7 @@ const Navbar = () => {
                   <SightingLink title={'My Complaints'} linkId={'complaints'} Icon={faFileLines} />
                   <SightingLink title={'About Us'} linkId={'About'} Icon={faCircleInfo} />
                   <SightingLink title={'Help and Support'} linkId={'support'} Icon={faHeadphones} />
-                  <SightingLink title={'FAQ'} linkId={'faq'} Icon={faCircleQuestion} />
+                  <SightingLink title={'FAQ'} linkId={'faq'} Icon={faCircleQuestion} link={"/faq"} />
                   <SightingLink title={'Sign out'} linkId={'logout'} methode={handleLogout} Icon={faRightFromBracket} />
 
                 </div>
