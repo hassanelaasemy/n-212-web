@@ -19,7 +19,7 @@ import HomeCours from "./pages/Cours/HomeCours";
 
 import UserProfile from "./pages/user/UserProfile";
 import DetailCours from "./pages/Cours/DetailCours";
-
+import MyCoursesPage from "./pages/MyCourses/MyCoursesPage";
 
 export default function AppRoutes() {
   const loggedIn = useSelector((state) => state.auth.isAuthenticated);
@@ -34,6 +34,7 @@ export default function AppRoutes() {
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/content/show/:id" element={<DetailCours />} />
+            <Route path="/mycontent" element={<MyCoursesPage />} />
           </Routes>
         </Authenticated>
       ) : (

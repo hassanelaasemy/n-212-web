@@ -161,7 +161,7 @@ const Navbar = () => {
                   <SightingLink title={'Profile'} linkId={'profile'} Icon={faUser} link={"/profile"}/>
                   <SightingLink title={'Favorit'} linkId={'favorit'} Icon={faHeart} />
                   <SightingLink title={'Password and security'} linkId={'password'} Icon={faShield} />
-                  <SightingLink title={'My courses'} linkId={'courses'} Icon={faSchool} />
+                  <SightingLink title={'My courses'} linkId={'courses'} Icon={faSchool} link={"/mycontent"} />
                   <SightingLink title={'Completed courses'} linkId={'complete_courses'} Icon={faCircleCheck} />
                   <SightingLink title={'My topics'} linkId={'topics'} Icon={faNewspaper} />
                   <SightingLink title={'My goals'} linkId={'goals'} Icon={faBullseye} />
